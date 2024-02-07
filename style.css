@@ -4,31 +4,24 @@
 
 html {
   font-family: Helvetica;
-  --main-color: rgb(249, 160, 160);
+  --main-color: rgb(255, 130, 130);
   --font-color: rgb(113, 100, 164);
   --grey: rgb(229, 229, 229);
+  --shadow: rgb(243, 88, 88);
 }
 
-.flex {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-
+body {
+  background-color: #f5f5f5;
   margin: 0;
-}
-
-main {
-  text-align: left;
 }
 
 .part {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-}
 
-.flex {
-  display: grid;
+  margin: 1rem;
 }
 
 header {
@@ -43,11 +36,6 @@ header {
 
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-}
-
-.part {
-  margin: 1rem;
 }
 
 #list {
@@ -67,6 +55,7 @@ header {
   border: 1px solid var(--main-color);
   color: var(--font-color);
   background-color: var(--grey);
+  box-shadow: 3px 3px 0 var(--shadow);
 }
 
 #add-field-input {

@@ -14,48 +14,49 @@
             <h1 class="headline">ToDo APP</h1>
         </header>
 
-        <div class="flex">
-            <form class="part">
-                <div class="filter-all filter">
-                    <label>
-                        <input type="radio" id="all" name="filter" />
-                        All
-                    </label>
-                </div>
 
-                <div class="filter-open filter">
-                    <label>
-                        <input type="radio" id="open" name="filter" />
-                        Open
-                    </label>
-                </div>
-
-                <div class="filter-done filter">
-                    <label>
-                        <input type="radio" id="done" name="filter" />
-                        Done
-                    </label>
-                </div>
-            </form>
-
-            <section>
-                <div class="remove-part part">
-                    <button id="remove-button">Remove Done Todos</button>
-                </div>
-            </section>
-
-            <form class="add-part part" id="add-field">
+        <form class="part">
+            <div class="filter-all filter">
                 <label>
-                    <input type="text" name="input" placeholder=" Was steht an?" id="add-field-input" />
+                    <input type="radio" id="all" name="filter" />
+                    All
                 </label>
-                <button type="submit" id="add-button">Add</button>
-            </form>
+            </div>
 
-            <form>
-                <ul id="list">
-                    <li> <input type="checkbox" id="cb" /> I'm a default todo </li>
-                </ul>
-            </form>
+            <div class="filter-open filter">
+                <label>
+                    <input type="radio" id="open" name="filter" />
+                    Open
+                </label>
+            </div>
+
+            <div class="filter-done filter">
+                <label>
+                    <input type="radio" id="done" name="filter" />
+                    Done
+                </label>
+            </div>
+        </form>
+
+        <form class="add-part part" id="add-field">
+            <label>
+                <input type="text" name="input" placeholder=" Was steht an?" id="add-field-input" />
+            </label>
+            <button type="submit" id="add-button">Add</button>
+        </form>
+
+        <form class="list-part part">
+            <ul id="list">
+                <li> <input type="checkbox" id="cb" /> I'm a default todo </li>
+            </ul>
+        </form>
+
+        <section>
+            <div class="remove-part part">
+                <button id="remove-button">Remove Done Todos</button>
+            </div>
+        </section>
+
         </div>
 
         <script src="script.js"></script>
@@ -63,12 +64,3 @@
 </main>
 
 </html>
-
-<!--
-Local Storage
-    local storage verwenden um immer den aktuellen "state" zu speichern
-    beim reload immer letzter aktueller "state"
-
-Ducplicate Check
-    NICHT erlaubt: 
-        1. ducplicate todo Bechreibung (case-insensitive = Groß & Kleinschreibung wird ignoriert)
