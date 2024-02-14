@@ -114,28 +114,6 @@ function render() {
         });
       render(); // synchronisiert sofort den Status mit der UI. Das render() aus dem refresh() folgt erst nach dem .then request
     });
-
-    btnRemove.addEventListener("click", function () {
-      state.todos.forEach((task) => {
-        if (task.done === true) {
-          fetch(`http://localhost:4730/todos/${task.id}`, {
-            method: "DELETE",
-          })
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Fetch didn't work!");
-              }
-              return response.json();
-            })
-            .then((changeTodoItem) => {
-              refresh();
-            })
-            .catch((error) => {
-              console.error("Error removing task:", error);
-            });
-        }
-      });
-    });
   });
 }
 render(); // Initial-Rendern der Todos
@@ -206,6 +184,29 @@ fieldAdd.addEventListener("submit", function (event) {
   } else {
     alert("Only todos with 5 or more characters");
   }
+});
+
+// remove Event
+btnRemove.addEventListener("click", function () {
+  state.todos.forEach((task) => {
+    if (task.done === true) {
+      fetch(`http://localhost:4730/todos/${task.id}`, {
+        method: "DELETE",
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Fetch didn't work!");
+          }
+          return response.json();
+        })
+        .then((changeTodoItem) => {
+          refresh();
+        })
+        .catch((error) => {
+          console.error("Fehler beim Entfernen der Aufgabe:", error);
+        });
+    }
+  });
 });
 
 render(); // Neu rendern der Liste, um das hinzugefügte Todo anzuzeigen
