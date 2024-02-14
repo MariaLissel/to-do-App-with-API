@@ -112,26 +112,30 @@ function render() {
         .then((changeTodoItem) => {
           refresh();
         });
+      render(); // synchronisiert sofort den Status mit der UI. Das render() aus dem refresh() folgt erst nach dem .then request
     });
 
-    /*
-btnRemove.addEventListener("click", function () {
-let id = state.todos = state.todos.filter((task) => !task.done);
-
-fetch(`http://localhost:4730/todos/${id}`, {
-  method: "DELETE",
-})
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Fetch didn't work!");
-    }
-    return response.json();
-  })
-  .then((changeTodoItem) => {
-    refresh();
-  });
-})
-*/
+    btnRemove.addEventListener("click", function () {
+      state.todos.forEach((task) => {
+        if (task.done === true) {
+          fetch(`http://localhost:4730/todos/${task.id}`, {
+            method: "DELETE",
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Fetch didn't work!");
+              }
+              return response.json();
+            })
+            .then((changeTodoItem) => {
+              refresh();
+            })
+            .catch((error) => {
+              console.error("Error removing task:", error);
+            });
+        }
+      });
+    });
   });
 }
 render(); // Initial-Rendern der Todos
