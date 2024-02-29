@@ -29,7 +29,7 @@ let state = {
   filter: "all", // Standard ist all daneben noch /Open /Done
 };
 
-// Fetch
+// refresh für alle Aktualisierungen aus der API
 function refresh() {
   fetch("http://localhost:4730/todos")
     .then((response) => {
@@ -47,6 +47,7 @@ function refresh() {
 }
 refresh();
 
+// render für alle Aktualisierungen aus JS
 function render() {
   // "Tisch abräumen" = löscht eventuelle Elemente aus HTML
   ulElement.innerHTML = "";
@@ -117,6 +118,8 @@ function render() {
   });
 }
 render(); // Initial-Rendern der Todos
+
+// EVENTS ////////////////////////////////////////////////////////////////////
 
 // filter Event für Filter All
 btnAll.addEventListener("change", function () {
@@ -197,9 +200,6 @@ btnRemove.addEventListener("click", function () {
           if (!response.ok) {
             throw new Error("Fetch didn't work!");
           }
-          return response.json();
-        })
-        .then((changeTodoItem) => {
           refresh();
         })
         .catch((error) => {
